@@ -1,0 +1,468 @@
+/* Product page */
+
+.product-page .main .container {
+  margin-bottom: 70px;
+  margin-top: 70px;
+}
+
+.product-page .product-info {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 70px;
+}
+
+.product-page .product-info-photo {
+  width: 578px;
+  max-height: 740px;
+  text-align: center;
+}
+
+.product-info .product-info-photo img {
+  max-width: 478px;
+  display: inline-block;
+}
+
+.product-info-name {
+  line-height: 39px;
+  font-weight: 600;
+  font-size: 32px;
+}
+
+.product-info-price {
+  line-height: 39px;
+  font-weight: 600;
+  font-size: 32px;
+}
+
+.product-info-head {
+  margin-bottom: 30px;
+}
+
+.product-info-title {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  padding-bottom: 10px;
+}
+
+.color-pannel {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.cp:not(:last-child) {
+  margin-right: 16px;
+}
+
+.cp {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ccc;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cp.active {
+  border: 2px solid black;
+}
+
+.cp.cp-fair {
+  background-color: #eae2d7;
+}
+
+.cp.cp-pink {
+  background-color: #ffc1cc;
+}
+
+.cp.cp-purple {
+  background-color: #c289e4;
+}
+
+.cp.cp-lightgreen {
+  background-color: #a4e770;
+}
+
+.cp.cp-red {
+  background-color: #ed1f1f;
+}
+
+.product-color {
+  margin-bottom: 30px;
+}
+
+.product-wick {
+  margin-bottom: 30px;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #fff5e8;
+  color: black;
+  width: 340px;
+  height: 56px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: start;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  background-image: url(../img/dropbtnicon.svg);
+  background-repeat: no-repeat;
+  background-position: right 25px center;
+}
+
+.dropbtn-text {
+  margin-left: 21px;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: #f2d0a4;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff5e8;
+  color: black;
+  width: 340px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: start;
+  border: none;
+  cursor: pointer;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #f2d0a4;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+  display: block;
+}
+
+.product-fragnance {
+  margin-bottom: 30px;
+}
+
+.product-info-description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  max-width: 448px;
+  margin-bottom: 20px;
+}
+
+.info-description-name {
+  font-weight: 500;
+}
+
+.product-info-parametrs {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 30px;
+}
+
+.info-parametrs-title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.product-info-buttons {
+  position: relative;
+}
+
+.product-buy-button {
+  background-color: #fff;
+  width: 177px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 3px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.product-favorite-button {
+  background-color: inherit;
+  border: none;
+  width: 27px;
+  height: 25px;
+  margin-left: 36px;
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  transform: translate(0, -50%);
+  cursor: pointer;
+}
+
+/* Схожі товари */
+
+.similar-products-title {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 30px;
+}
+
+.product-page .product-cards-row {
+  margin: 0;
+}
+
+.goonbtn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 37px;
+}
+
+.product-page-goonbtn {
+  position: relative;
+  background-color: #fff;
+  width: 177px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 3px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.product-card {
+  position: relative;
+  width: 270px;
+  height: 403px;
+  background-color: #fff;
+  border: 1px solid #cdcdcd;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.store-flex {
+  display: flex;
+}
+
+.product-cards-row {
+  margin-bottom: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Для Firefox */
+  -ms-overflow-style: none; /* Для IE и Edge */
+  gap: 13px;
+}
+
+.product-cards-row::-webkit-scrollbar {
+  display: none; /* Для Chrome, Safari и Opera */
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.products-block {
+  margin-bottom: 80px;
+  margin-top: 38px;
+}
+
+.product-card-img {
+  max-width: 150px;
+  max-height: 200px;
+  padding: 37px 60px 0 60px;
+}
+
+.heart-icon {
+  position: absolute;
+  top: 15px;
+  right: 19px;
+  z-index: 1;
+}
+
+.heart-icon-svg {
+  width: 24px;
+  height: 22px;
+}
+
+.product-card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  align-items: center;
+}
+
+.product-card-title {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.product-card-description {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  padding-bottom: 33px;
+}
+
+.product-card-price {
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 36px;
+  text-align: center;
+}
+
+.cart-icon {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  z-index: 1;
+}
+
+.cart-icon-svg {
+  width: 60px;
+  height: 40px;
+}
+
+@media (max-width: 900px) {
+  .product-page .product-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 70px;
+  }
+
+  .container {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .product-page .product-info-photo {
+    width: 578px;
+    max-height: 740px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .product-page .product-info {
+    margin-bottom: 30px;
+  }
+
+  .product-page .product-info-photo {
+    width: 300px;
+    max-height: 500px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .product-info-name {
+    font-size: 24px;
+  }
+
+  .product-info-price {
+    font-size: 24px;
+  }
+
+  .product-info-head {
+    margin-bottom: 10px;
+  }
+
+  .product-info-title {
+    font-size: 18px;
+    padding-bottom: 5px;
+  }
+
+  .cp {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .product-color {
+    margin-bottom: 15px;
+  }
+
+  .product-wick {
+    margin-bottom: 15px;
+  }
+
+  /* Dropdown Button */
+  .dropbtn {
+    max-width: 280px;
+  }
+
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    width: 280px;
+  }
+
+  .product-fragnance {
+    margin-bottom: 15px;
+  }
+
+  .similar-products-title {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+
+  .product-page .product-cards-row {
+    margin: 0;
+  }
+
+  .similar-products-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+}

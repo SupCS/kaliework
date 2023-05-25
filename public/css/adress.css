@@ -1,0 +1,103 @@
+/* Adress Page */
+
+.adress-page header {
+  margin-bottom: 70px;
+}
+
+.adress-page #map-text-container {
+  display: flex;
+  justify-content: center;
+  width: 1120px;
+  margin-bottom: 144px;
+}
+
+.adress-page .map-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.adress-page #map {
+  width: 544px;
+  height: 490px;
+}
+
+.adress-page .text-wrapper {
+  flex: 1;
+  padding-left: 32px;
+  text-align: left;
+  margin: 0;
+}
+
+.adress-page .text-wrapper h1 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  padding-bottom: 20px;
+}
+
+.adress-page .text-wrapper p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: justify;
+  padding-bottom: 10px;
+}
+
+.adress-page .map-head-text {
+  padding-bottom: 20px;
+}
+
+.adress-page .text-wrapper h2 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 1150px) {
+  .adress-page #map-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    margin-left: 10px;
+  }
+
+  .adress-page .map-wrapper {
+    margin-bottom: 50px;
+  }
+
+  .adress-page .map-container {
+    position: relative;
+    width: 544px;
+    height: auto;
+  }
+
+
+  .adress-page .text-wrapper {
+    width: 100%;
+    max-width: 544px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .adress-page #map {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+  }
+
+  .adress-page .map-wrapper {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+  }
+}
