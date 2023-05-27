@@ -32,8 +32,6 @@ Route::get('/contacts', function () {
 Route::get('/product', function () {
     return view('product');
 })->name('product');
-
-
 Route::post('/contacts', function (\Illuminate\Http\Request $request) {
     $data = $request->validate([
         'username' => 'required',
@@ -45,3 +43,6 @@ Route::post('/contacts', function (\Illuminate\Http\Request $request) {
 
     return redirect('/contacts')->with('success', 'Форма успешно отправлена!');
 });
+
+use App\Http\Controllers\StoreController;
+Route::get('/store', [StoreController::class, 'index'])->name('store');
