@@ -34,6 +34,14 @@ Route::get('/product', function () {
 })->name('product');
 
 
-use App\Http\Controllers\FormProcessController;
+Route::post('/contacts', function (\Illuminate\Http\Request $request) {
+    $data = $request->validate([
+        'username' => 'required',
+        'email' => 'required|email',
+        'question' => 'required',
+    ]);
 
-Route::post('/process_form', [FormProcessController::class, 'processForm'])->name('form.process');
+    \Illuminate\Support\Facades\Mail::to('di.syp4ik@gmail.com')->send(new \App\Mail\ContactFormMail($data));
+
+    return redirect('/contacts')->with('success', 'Форма успешно отправлена!');
+});

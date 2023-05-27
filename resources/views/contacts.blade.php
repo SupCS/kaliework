@@ -28,8 +28,11 @@
       </div>
         <div class="contacts-form-container">
         <h2>Є запитання? Ми на них швидко відповімо!</h2>
-        <form method="post" action="{{ route('form.process') }}">
+        <form method="post" action="/contacts">
             @csrf
+            @if(session('success'))
+                <div>{{ session('success') }}</div>
+            @endif
             <input type="text" name="username" placeholder="Ваше ім'я" required>
             <input type="email" name="email" placeholder="Ваш e-mail" required>
             <input type="text" name="question" placeholder="Ваше питання" required>
