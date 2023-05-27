@@ -28,29 +28,39 @@
           </div>
           <div class="store-flex">
             <div class="filters-side-bar">
-              <div class="filter">
-                <h3 class="filter-price-title">Ціна</h3>
-                <div class="filter-range-wrapper">
-                  <div class="filter-range">
-                    <div class="filter-range-scale">
-                      <div class="filter-range-bar"></div>
-                    </div>
-                    <button class="filter-range-handle min"></button>
-                    <button
-                      class="filter-range-handle max"
-                      style="left: 75%"
-                    ></button>
-                  </div>
+            <div class="price-filter">
+                <div class="price-filter-title">
+                  <p>Ціна</p>
                 </div>
-
-                <div class="filter-interval">
-                  <label
-                    ><input type="text" name="min-interval" value="0"
-                  /></label>
-                  <div class="filter-interval-line"></div>
-                  <label
-                    ><input type="text" name="max-interval" value="15000"
-                  /></label>
+                <div class="price-slider">
+                  <div class="progress"></div>
+                </div>
+                <div class="range-input">
+                  <input
+                    type="range"
+                    class="range-min"
+                    min="0"
+                    max="5000"
+                    value="0"
+                    step="50"
+                  />
+                  <input
+                    type="range"
+                    class="range-max"
+                    min="0"
+                    max="5000"
+                    value="5000"
+                    step="50"
+                  />
+                </div>
+                <div class="price-input">
+                  <div class="field">
+                    <input type="number" class="input-min" value="0" />
+                  </div>
+                  <div class="separator"></div>
+                  <div class="field">
+                    <input type="number" class="input-max" value="5000" />
+                  </div>
                 </div>
               </div>
               <div class="filters">
@@ -233,7 +243,7 @@
                     <img src="./img/bodybuttcard.jpg" />
                   </div>
                   <div class="product-card-content">
-                    <h5 class="product-card-title">Свічка BODY Woman</h5>
+                    <h5 class="product-card-title">Свічка BODY Butt</h5>
                     <p class="product-card-description">
                       У 3 ароматах на вибір
                     </p>
@@ -253,7 +263,7 @@
                     <img src="./img/bodycard.jpg" />
                   </div>
                   <div class="product-card-content">
-                    <h5 class="product-card-title">Свічка BODY Woman</h5>
+                    <h5 class="product-card-title">Свічка BODY Boy</h5>
                     <p class="product-card-description">
                       У 3 ароматах на вибір
                     </p>
@@ -273,7 +283,7 @@
                     <img src="./img/bodycard.jpg" />
                   </div>
                   <div class="product-card-content">
-                    <h5 class="product-card-title">Свічка BODY Woman</h5>
+                    <h5 class="product-card-title">Свічка BODY Girl</h5>
                     <p class="product-card-description">
                       У 3 ароматах на вибір
                     </p>
@@ -293,7 +303,7 @@
                     <img src="./img/bodycard.jpg" />
                   </div>
                   <div class="product-card-content">
-                    <h5 class="product-card-title">Свічка BODY Woman</h5>
+                    <h5 class="product-card-title">Свічка BODY Cat</h5>
                     <p class="product-card-description">
                       У 3 ароматах на вибір
                     </p>
@@ -491,7 +501,12 @@
           </div>
         </div>
       </div>
+    @include('layouts.cart')
     @include('layouts.footer')
 </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{{ asset('js/cart.js') }}"></script>
+<script src="{{ asset('js/header.js') }}"></script>
+<script src="{{ asset('js/priceslider.js') }}"></script>
 </html>

@@ -176,11 +176,13 @@
           </div>
         </div>
       </div>
+      @include('layouts.cart')
       @include('layouts.footer')
     </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="./js/colors.js"></script>
-  <script src="./js/header.js"></script>
-  <script src="./js/dropdown.js"></script>
+  <script src="{{ asset('js/cart.js') }}"></script>
+  <script src="{{ asset('js/colors.js') }}"></script>
+  <script src="{{ asset('js/header.js') }}"></script>
+  <script src="{{ asset('js/dropdown.js') }}"></script>
 </html>
