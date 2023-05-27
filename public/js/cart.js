@@ -67,6 +67,7 @@ class Cart {
     removeProduct(index) {
         this.products.splice(index, 1);
         updateCartCount();
+        showEmptyCartMessage();
     }
     get cost() {
         const sum = this.products.reduce((total, product) => {
@@ -163,8 +164,6 @@ const body = document.body;
 const popupContainer = document.querySelector("#popup_container");
 const popupProductList = document.querySelector("#popup_product_list");
 const popupCost = document.querySelector("#popup_cost");
-const popupDiscount = document.querySelector("#popup_discount");
-const popupCostDiscount = document.querySelector("#popup_cost_discount");
 
 cart.addEventListener("click", (e) => {
     e.preventDefault();
@@ -172,6 +171,13 @@ cart.addEventListener("click", (e) => {
     body.classList.add("lock");
     popupContainerFill();
 });
+
+function showEmptyCartMessage() {
+    const popupProductList = document.querySelector("#popup_product_list");
+    if (myCart.products.length === 0) {
+        popupProductList.innerHTML = "<p>Наразі тут нічого немає</p>";
+    }
+}
 
 function popupContainerFill() {
     popupProductList.innerHTML = null;
@@ -246,6 +252,7 @@ function popupContainerFill() {
     productsHTML.forEach((productHTML) => {
         popupProductList.appendChild(productHTML);
     });
+    showEmptyCartMessage();
 
     const totalCost = myCart.cost;
 
