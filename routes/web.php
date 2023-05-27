@@ -17,10 +17,6 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-Route::get('/store', function () {
-    return view('store');
-})->name('store');
-
 Route::get('/adress', function () {
     return view('adress');
 })->name('adress');
@@ -29,9 +25,6 @@ Route::get('/contacts', function () {
     return view('contacts');
 })->name('contacts');
 
-Route::get('/product', function () {
-    return view('product');
-})->name('product');
 Route::post('/contacts', function (\Illuminate\Http\Request $request) {
     $data = $request->validate([
         'username' => 'required',
@@ -46,3 +39,5 @@ Route::post('/contacts', function (\Illuminate\Http\Request $request) {
 
 use App\Http\Controllers\StoreController;
 Route::get('/store', [StoreController::class, 'index'])->name('store');
+Route::get('/product/{id}', [StoreController::class, 'showProduct'])->name('product');
+

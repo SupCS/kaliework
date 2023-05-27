@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/styles.css" />
-    <link rel="stylesheet" href="./css/product.css" />
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/product.css') }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,12 +21,16 @@
         <div class="container">
           <div class="product-info">
             <div class="product-info-photo">
-              <img src="./img/productwoman.jpg" />
+              @if (isset($product->image))
+                  <img src="{{ asset('img/' . $product->bigImage) }}" />
+              @else
+                  <img src="{{ asset('img/bodycard.jpg') }}" />
+              @endif
             </div>
             <div class="product-info-main">
               <div class="product-info-head">
-                <h1 class="product-info-name">Свічка BODY Woman</h1>
-                <h1 class="product-info-price">820₴</h1>
+                <h1 class="product-info-name">{{ $product->name }}</h1>
+                <h1 class="product-info-price">{{ $product->price }}₴</h1>
               </div>
               <div class="product-color">
                 <h3 class="product-info-title">Колір</h3>
@@ -64,7 +68,7 @@
                 </div>
               </div>
               <div class="product-info-description">
-                <span class="info-description-name">Свічка The Woman</span> -
+                <span class="info-description-name">{{ $product->name }}</span> -
                 свічка жіночого тіла, що ідеально передає його красу,
                 елегантність та винтонченість. Свічка має 3 аромати на вибор,
                 або може не мати його взагалі.
@@ -81,7 +85,7 @@
               <div class="product-info-buttons">
                 <button class="product-buy-button">у кошик</button>
                 <button class="product-favorite-button">
-                  <img src="./img/like.svg" />
+                  <img src="{{ asset('img/like.svg') }}" />
                 </button>
               </div>
             </div>
@@ -92,7 +96,7 @@
               <div class="product-card">
                 <a href="./product.html">
                   <div class="product-card-img">
-                    <img src="./img/bodycard.jpg" />
+                    <img src="{{ asset('img/bodycard.jpg') }}" />
                   </div>
                   <div class="product-card-content">
                     <h5 class="product-card-title">Свічка BODY Woman</h5>
@@ -103,16 +107,16 @@
                   </div>
                 </a>
                 <div class="heart-icon">
-                  <img class="heart-icon-svg" src="./img/like.svg" />
+                  <img class="heart-icon-svg" src="{{ asset('img/like.svg') }}" />
                 </div>
                 <div class="cart-icon">
-                  <img class="cart-icon-svg" src="./img/catricon.svg" />
+                  <img class="cart-icon-svg" src="{{ asset('img/catricon.svg') }}" />
                 </div>
               </div>
               <div class="product-card">
                 <a href="./product.html">
                   <div class="product-card-img">
-                    <img src="./img/bodycard.jpg" />
+                    <img src="{{ asset('img/bodycard.jpg') }}" />
                   </div>
                   <div class="product-card-content">
                     <h5 class="product-card-title">Свічка BODY Woman</h5>
@@ -123,16 +127,16 @@
                   </div>
                 </a>
                 <div class="heart-icon">
-                  <img class="heart-icon-svg" src="./img/like.svg" />
+                  <img class="heart-icon-svg" src="{{ asset('img/like.svg') }}" />
                 </div>
                 <div class="cart-icon">
-                  <img class="cart-icon-svg" src="./img/catricon.svg" />
+                  <img class="cart-icon-svg" src="{{ asset('img/catricon.svg') }}" />
                 </div>
               </div>
               <div class="product-card">
                 <a href="./product.html">
                   <div class="product-card-img">
-                    <img src="./img/bodycard.jpg" />
+                    <img src="{{ asset('img/bodycard.jpg') }}" />
                   </div>
                   <div class="product-card-content">
                     <h5 class="product-card-title">Свічка BODY Woman</h5>
@@ -143,16 +147,16 @@
                   </div>
                 </a>
                 <div class="heart-icon">
-                  <img class="heart-icon-svg" src="./img/like.svg" />
+                  <img class="heart-icon-svg" src="{{ asset('img/like.svg') }}" />
                 </div>
                 <div class="cart-icon">
-                  <img class="cart-icon-svg" src="./img/catricon.svg" />
+                  <img class="cart-icon-svg" src="{{ asset('img/catricon.svg') }}" />
                 </div>
               </div>
               <div class="product-card">
                 <a href="./product.html">
                   <div class="product-card-img">
-                    <img src="./img/bodycard.jpg" />
+                    <img src="{{ asset('img/bodycard.jpg') }}" />
                   </div>
                   <div class="product-card-content">
                     <h5 class="product-card-title">Свічка BODY Woman</h5>
@@ -163,10 +167,10 @@
                   </div>
                 </a>
                 <div class="heart-icon">
-                  <img class="heart-icon-svg" src="./img/like.svg" />
+                  <img class="heart-icon-svg" src="{{ asset('img/like.svg') }}" />
                 </div>
                 <div class="cart-icon">
-                  <img class="cart-icon-svg" src="./img/catricon.svg" />
+                  <img class="cart-icon-svg" src="{{ asset('img/catricon.svg') }}" />
                 </div>
               </div>
             </div>

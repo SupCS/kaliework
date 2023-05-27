@@ -1,5 +1,5 @@
 <button class="cart" id="cart">
-<img class="cart__image" src="./img/cart.png" alt="Cart" />
+<img class="cart__image" src="{{ asset('img/cart.png') }}" alt="Cart" />
 <div class="cart__num" id="cart_num">0</div>
 </button>
 <div class="popup">

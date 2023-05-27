@@ -243,6 +243,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 37px;
 }
 
 .product-page-goonbtn {
@@ -258,7 +259,7 @@
   text-align: center;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-top: 37px;
+  cursor: pointer;
 }
 
 .product-card {

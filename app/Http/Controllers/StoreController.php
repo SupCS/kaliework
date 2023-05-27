@@ -12,5 +12,15 @@ class StoreController extends Controller
 
         return view('store', ['products' => $products]);
     }
-}
 
+    public function showProduct($id)
+{
+    $product = Product::with('image')->find($id);
+
+    $imageName = pathinfo($product->image, PATHINFO_FILENAME); // Получить имя файла изображения без расширения
+    $bigImageName = $imageName . 'big.jpg'; // Добавить префикс "big" к имени файла
+    $product->bigImage = $bigImageName; // Добавить свойство "bigImage" с именем увеличенного изображения
+
+    return view('product', ['product' => $product]);
+}
+}

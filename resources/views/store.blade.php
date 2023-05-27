@@ -199,7 +199,7 @@
             <div class="products-block">
                 @foreach ($products as $product)
                     <div class="product-card">
-                        <a href="{{ route('product', ['id' => $product->id]) }}">
+                      <a href="{{ route('product', ['id' => $product->id]) }}">
                         <div class="product-card-img">
                             @if (isset($product->image))
                                 <img src="{{ asset('img/' . $product->image) }}" />
