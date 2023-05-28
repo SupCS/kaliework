@@ -212,6 +212,12 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.product-buy-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 1px 5px #000;
 }
 
 .product-favorite-button {
@@ -260,6 +266,12 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.product-page-goonbtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 1px 5px #000;
 }
 
 .product-card {
@@ -306,6 +318,14 @@
     max-width: 150px;
     max-height: 200px;
     padding: 37px 60px 0 60px;
+}
+
+.heart-icon {
+    position: absolute;
+    top: 15px;
+    right: 19px;
+    z-index: 1;
+    cursor: pointer;
 }
 
 .heart-icon-svg {

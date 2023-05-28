@@ -14,18 +14,21 @@ class StoreController extends Controller
     }
 
     public function showProduct($id)
-{
-    $product = Product::with('image')->find($id);
+    {
+        $product = Product::with('image')->find($id);
 
-    // Проверка, найден ли товар
-    if($product === null) {
-        return redirect('/store');
+        // Проверка, найден ли товар
+        if($product === null) {
+            return redirect('/store');
+        }
+
+        // Получить 4 случайных продукта
+        $otherProducts = Product::with('image')->inRandomOrder()->take(4)->get();
+
+        $imageName = pathinfo($product->image, PATHINFO_FILENAME); // Получить имя файла изображения без расширения
+        $bigImageName = $imageName . 'big.jpg'; // Добавить префикс "big" к имени файла
+        $product->bigImage = $bigImageName; // Добавить свойство "bigImage" с именем увеличенного изображения
+
+        return view('product', ['product' => $product, 'otherProducts' => $otherProducts]);
     }
-
-    $imageName = pathinfo($product->image, PATHINFO_FILENAME); // Получить имя файла изображения без расширения
-    $bigImageName = $imageName . 'big.jpg'; // Добавить префикс "big" к имени файла
-    $product->bigImage = $bigImageName; // Добавить свойство "bigImage" с именем увеличенного изображения
-
-    return view('product', ['product' => $product]);
-}
 }
