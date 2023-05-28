@@ -19,7 +19,7 @@
     @include('layouts.header')
       <div class="main">
         <div class="container">
-          <div class="product-info">
+          <div class="product-info" data-product-id="{{ $product->id }}">
             <div class="product-info-photo">
               @if (isset($product->image))
                   <img src="{{ asset('img/' . $product->bigImage) }}" />

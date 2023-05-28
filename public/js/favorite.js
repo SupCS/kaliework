@@ -41,6 +41,7 @@ favoriteProductCards.forEach((productCard) => {
         e.preventDefault();
         const card = e.target.closest(".product-card");
         const product = {
+            id: card.getAttribute("data-product-id"),
             imageSrc: card.querySelector(".product-card-img img").src,
             name: card.querySelector(".product-card-title").textContent,
             price: card.querySelector(".product-card-price").textContent,
@@ -57,6 +58,7 @@ if (addToFavoriteButton) {
     addToFavoriteButton.addEventListener("click", (e) => {
         e.preventDefault();
         const productInfo = document.querySelector(".product-info");
+        const productId = productInfo.getAttribute("data-product-id");
         const productImage = productInfo.querySelector(
             ".product-info-photo img"
         ).src;
@@ -67,6 +69,7 @@ if (addToFavoriteButton) {
         ).textContent;
 
         const product = {
+            id: productId, // добавляем id продукта
             imageSrc: productImage,
             name: productName,
             price: productPrice,
@@ -116,13 +119,19 @@ function favoritePopupContainerFill() {
             const productWrap1 = document.createElement("div");
             productWrap1.classList.add("popup__product-wrap");
 
+            const productImageLink = document.createElement("a");
+            productImageLink.href = "/product/" + product.id;
+
             const productImage = document.createElement("img");
             productImage.classList.add("popup__product-image");
             productImage.setAttribute("src", product.imageSrc);
-            productWrap1.appendChild(productImage);
 
-            const productName = document.createElement("h2");
+            productImageLink.appendChild(productImage);
+            productWrap1.appendChild(productImageLink);
+
+            const productName = document.createElement("a");
             productName.classList.add("popup__product-title");
+            productName.href = "/product/" + product.id;
             productName.innerHTML = product.name;
             productWrap1.appendChild(productName);
 
