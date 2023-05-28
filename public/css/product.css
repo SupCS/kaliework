@@ -331,29 +331,16 @@
 .heart-icon-svg {
   width: 24px;
   height: 22px;
-  transition: all 0.3s;
-  z-index: 2;
   cursor: pointer;
 }
 
 .heart-icon-svg:hover {
   fill: #EE204D;
-}
-
-@keyframes heartPulse {
-  0% {
-      transform: scale(1.2);
-  }
-  50% {
-      transform: scale(1.2);
-  }
-  100% {
-      transform: scale(1);
-  }
+  transition: 0.3s;
 }
 
 .heart-icon-svg:active {
-  animation: heartPulse 0.8s ease;
+  animation: scale(1.2) 0.8s ease;
 }
 
 .product-card-content {

@@ -19,5 +19,10 @@ class Product extends Model
     {
         return $this->belongsToMany(Type::class)->withTimestamps();
     }
+
+    public function sizes()
+{
+    return $this->belongsToMany(Size::class)->withTimestamps();
+}
 }
 
