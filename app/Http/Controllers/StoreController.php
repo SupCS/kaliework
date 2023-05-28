@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Type;
+use App\Models\Collection;
+use App\Models\Aroma;
+use App\Models\Size;
+use App\Models\Wick;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
@@ -11,22 +15,73 @@ class StoreController extends Controller
     public function index(Request $request)
     {
         $selectedTypes = $request->input('types', []);
+        $selectedCollections = $request->input('collections', []);
+        $selectedAromas = $request->input('aromas', []);
+        $selectedSizes = $request->input('sizes', []);
+        $selectedWicks = $request->input('wicks', []);
+
+        // Если выбран фильтр "Всі" для типа товара, игнорируем все остальные выбранные типы товаров
+        if (in_array('all', $selectedTypes)) {
+            $selectedTypes = ['all'];
+        }
 
         $products = Product::with('image', 'types')
             ->when($selectedTypes, function ($query, $selectedTypes) {
                 if ($selectedTypes[0] === 'all') {
-                    // Если выбран фильтр "Всі", не применяем фильтрацию по типу товара
-                    return $query;     
-                } else { return $query->whereHas('types', function ($query) use ($selectedTypes) {
-                    $query->whereIn('name', $selectedTypes);
-                });
+                    // Если выбран фильтр "Всі" для типа товара, не применяем фильтрацию по типу товара
+                    return $query;
+                } else {
+                    return $query->whereHas('types', function ($query) use ($selectedTypes) {
+                        $query->whereIn('type_id', $selectedTypes);
+                    });
                 }
             })
-            ->get('*');
+            ->when($selectedCollections, function ($query, $selectedCollections) {
+                if (in_array('all', $selectedCollections)) {
+                    // Если выбран фильтр "Всі" для свойства "Collection", не применяем фильтрацию по свойству "Collection"
+                    return $query;
+                } else {
+                    return $query->whereHas('collections', function ($query) use ($selectedCollections) {
+                        $query->whereIn('collection_id', $selectedCollections);
+                    });
+                }
+            })
+            ->when($selectedAromas, function ($query, $selectedAromas) {
+                if (in_array('all', $selectedAromas)) {
+                    return $query;
+                } else {
+                    return $query->whereHas('aromas', function ($query) use ($selectedAromas) {
+                        $query->whereIn('aroma_id', $selectedAromas);
+                    });
+                }
+            })
+            ->when($selectedSizes, function ($query, $selectedSizes) {
+                if (in_array('all', $selectedSizes)) {
+                    return $query;
+                } else {
+                    return $query->whereHas('sizes', function ($query) use ($selectedSizes) {
+                        $query->whereIn('size_id', $selectedSizes);
+                    });
+                }
+            })
+            ->when($selectedWicks, function ($query, $selectedWicks) {
+                if (in_array('all', $selectedWicks)) {
+                    return $query;
+                } else {
+                    return $query->whereHas('wicks', function ($query) use ($selectedWicks) {
+                        $query->whereIn('wick_id', $selectedWicks);
+                    });
+                }
+            })
+            ->get();
 
         $types = Type::all();
+        $collections = Collection::all();
+        $aromas = Aroma::all();
+        $sizes = Size::all();
+        $wicks = Wick::all();
 
-        return view('store', compact('products', 'types', 'selectedTypes'));
+        return view('store', compact('products', 'types', 'selectedTypes', 'collections', 'selectedCollections', 'aromas', 'selectedAromas', 'sizes', 'selectedSizes', 'wicks', 'selectedWicks'));
     }
 
     public function showProduct($id)
@@ -34,7 +89,7 @@ class StoreController extends Controller
         $product = Product::with('image')->find($id);
 
         // Проверка, найден ли товар
-        if($product === null) {
+        if ($product === null) {
             return redirect('/store');
         }
 
