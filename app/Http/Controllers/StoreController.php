@@ -3,14 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Type;
+use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('image')->get();
+        $selectedTypes = $request->input('types', []);
 
-        return view('store', ['products' => $products]);
+        $products = Product::with('image', 'types')
+            ->when($selectedTypes, function ($query, $selectedTypes) {
+                if ($selectedTypes[0] === 'all') {
+                    // Если выбран фильтр "Всі", не применяем фильтрацию по типу товара
+                    return $query;     
+                } else { return $query->whereHas('types', function ($query) use ($selectedTypes) {
+                    $query->whereIn('name', $selectedTypes);
+                });
+                }
+            })
+            ->get('*');
+
+        $types = Type::all();
+
+        return view('store', compact('products', 'types', 'selectedTypes'));
     }
 
     public function showProduct($id)

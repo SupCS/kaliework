@@ -63,138 +63,25 @@
                   </div>
                 </div>
               </div>
+              <form action="{{ route('store') }}" method="get" id="filter-form">
               <div class="filters">
-                <details class="filter-item">
-                  <summary class="filter-h3">Колекція</summary>
-                  <label class="checkbox-container"
-                    >Всі
-                    <input type="checkbox" checked="checked" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >HOUSE
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >KIDS
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Body
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Valentine's
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Friendship
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                </details>
-                <details class="filter-item">
-                  <summary class="filter-h3">Тип товару</summary>
-                  <label class="checkbox-container"
-                    >Всі
-                    <input type="checkbox" checked="checked" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Свічки
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Мило
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Набори
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Сертифікати
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                </details>
-                <details class="filter-item">
-                  <summary class="filter-h3">Аромат</summary>
-                  <label class="checkbox-container"
-                    >Всі
-                    <input type="checkbox" checked="checked" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Цитрусові
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Квіти
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Фрукти
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Екзотика
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Кастомні
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                </details>
-                <details class="filter-item">
-                  <summary class="filter-h3">Розмір</summary>
-                  <label class="checkbox-container"
-                    >Всі
-                    <input type="checkbox" checked="checked" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Великі
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Маленькі
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                </details>
-                <details class="filter-item">
-                  <summary class="filter-h3">Фітиль</summary>
-                  <label class="checkbox-container"
-                    >Всі
-                    <input type="checkbox" checked="checked" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Дерев'яний
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="checkbox-container"
-                    >Бавовняний
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                  </label>
-                </details>
+                  <details class="filter-item">
+                      <summary class="filter-h3">Тип товару</summary>
+                      <label class="checkbox-container">
+                          Всі
+                          <input type="checkbox" name="types[]" value="all" {{ in_array('all', $selectedTypes) ? 'checked' : '' }} onchange="document.getElementById('filter-form').submit()">
+                          <span class="checkmark"></span>
+                      </label>
+                      @foreach ($types as $type)
+                          <label class="checkbox-container">
+                              {{ $type->name }}
+                              <input type="checkbox" name="types[]" value="{{ $type->name }}" {{ in_array($type->name, $selectedTypes) ? 'checked' : '' }} onchange="document.getElementById('filter-form').submit()">
+                              <span class="checkmark"></span>
+                          </label>
+                      @endforeach
+                  </details>
               </div>
+          </form>
             </div>
             <div class="products-block">
                 @foreach ($products as $product)
