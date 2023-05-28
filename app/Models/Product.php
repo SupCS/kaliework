@@ -14,15 +14,28 @@ class Product extends Model
     {
         return $this->hasOne(Image::class, 'product_id');
     }
+    public function collections()
+    {
+        return $this->belongsToMany(Collection::class)->withTimestamps();
+    }    
 
     public function types()
     {
         return $this->belongsToMany(Type::class)->withTimestamps();
     }
 
-    public function sizes()
-{
-    return $this->belongsToMany(Size::class)->withTimestamps();
-}
-}
+    public function aromas()
+    {
+        return $this->belongsToMany(Aroma::class)->withTimestamps();
+    }
 
+    public function sizes()
+    {
+        return $this->belongsToMany(Size::class)->withTimestamps();
+    }
+
+    public function wicks()
+    {
+        return $this->belongsToMany(Wick::class)->withTimestamps();
+    }
+}
