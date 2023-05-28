@@ -14,5 +14,10 @@ class Product extends Model
     {
         return $this->hasOne(Image::class, 'product_id');
     }
+
+    public function types()
+    {
+        return $this->belongsToMany(Type::class)->withTimestamps();
+    }
 }
 
