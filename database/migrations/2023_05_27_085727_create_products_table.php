@@ -18,6 +18,10 @@ return new class extends Migration
             $table->decimal('price', 8, 2);
             $table->string('image')->nullable(); // Добавлено поле для пути к изображению
             $table->timestamps();
+            $table->text('ingridients')->nullable();
+            $table->text('long_description')->nullable();
+            $table->string('height')->nullable();
+            $table->string('weight')->nullable();
         });
     }
 

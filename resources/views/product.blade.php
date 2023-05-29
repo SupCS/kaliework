@@ -77,19 +77,19 @@
                 @endif
               </div>
               <div class="product-info-description">
-                <span class="info-description-name">{{ $product->name }}</span> -
-                свічка жіночого тіла, що ідеально передає його красу,
-                елегантність та винтонченість. Свічка має 3 аромати на вибор,
-                або може не мати його взагалі.
+                  <span class="info-description-name">{{ $product->name }}</span> -
+                  {{ $product->long_description }}
               </div>
               <div class="product-info-parametrs">
-                <p><span class="info-parametrs-title">Склад: </span>віск</p>
-                <p>
-                  <span class="info-parametrs-title">Час горіння: </span>до 4
-                  годин
-                </p>
-                <p><span class="info-parametrs-title">Висота: </span>20 см</p>
-                <p><span class="info-parametrs-title">Вага: </span>300г</p>
+                  @if ($product->ingridients)
+                      <p><span class="info-parametrs-title">Склад: </span>{{ $product->ingridients }}</p>
+                  @endif
+                  @if ($product->height)
+                      <p><span class="info-parametrs-title">Висота: </span>{{ $product->height }} см</p>
+                  @endif
+                  @if ($product->weight)
+                      <p><span class="info-parametrs-title">Вага: </span>{{ $product->weight }} г</p>
+                  @endif
               </div>
               <div class="product-info-buttons">
                 <button class="product-buy-button">у кошик</button>
@@ -128,7 +128,7 @@
                       <p class="product-card-description">
                         {{ $otherProduct->description }}
                       </p>
-                      <span class="product-card-price">{{ $otherProduct->price }} ₴</span>
+                      <span class="product-card-price">{{ number_format($otherProduct->price, 0, '', ' ') }} ₴</span>
                     </div>
                   </a>
                   <div class="heart-icon">

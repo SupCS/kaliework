@@ -226,10 +226,6 @@
         width: 80px;
         height: 65px;
     }
-
-    .product-card:last-child {
-        display: none;
-    }
 }
 
 @media (max-width: 1060px) {
@@ -265,9 +261,6 @@
 }
 
 @media (max-width: 940px) {
-    .product-card:last-child {
-        display: none;
-    }
 
     .searchbar {
         max-width: 300px;

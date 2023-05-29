@@ -32,7 +32,7 @@ class ProductSeeder extends Seeder
             $types[$typeName] = Type::firstOrCreate(['name' => $typeName]);
         }
 
-        $aromaNames = ['Немає','Цитрусові', 'Квіти', 'Фрукти', 'Екзотика', 'Кастомні'];
+        $aromaNames = ['Немає', 'Цитрусові', 'Квіти', 'Фрукти', 'Екзотика', 'Кастомні'];
         $aromas = [];
         foreach ($aromaNames as $aromaName) {
             $aromas[$aromaName] = Aroma::firstOrCreate(['name' => $aromaName]);
@@ -62,6 +62,10 @@ class ProductSeeder extends Seeder
                 'name' => 'Свічка Body Woman',
                 'description' => 'У 3 ароматах на вибір',
                 'price' => 900,
+                'long_description' => 'свічка жіночого тіла, що ідеально передає його красу, елегантність та винтонченість. Свічка має 3 аромати на вибір, або може не мати його взагалі. Час горіння: до 4 годин',
+                'ingridients' => 'Віск, натуральні ароматизатори (при виборі запаху)',
+                'height' => 40,
+                'weight' => 800,
                 'image' => 'bodycard.jpg',
                 'collections' => ['Body'],
                 'types' => ['Свічки'],
@@ -74,6 +78,10 @@ class ProductSeeder extends Seeder
                 'name' => 'Свічка Body Man',
                 'description' => 'У 3 ароматах на вибір',
                 'price' => 820,
+                'long_description' => 'свічка чоловічого, що ідеально передає його красу, мужність та міцність. Свічка має 3 аромати на вибір, або може не мати його взагалі. Час горіння: до 4 годин',
+                'ingridients' => 'Віск, натуральні ароматизатори (при виборі запаху)',
+                'height' => 40,
+                'weight' => 800,
                 'image' => 'bodymancard.jpg',
                 'collections' => ['Body'],
                 'types' => ['Свічки'],
@@ -86,6 +94,10 @@ class ProductSeeder extends Seeder
                 'name' => 'Свічка Body Butt',
                 'description' => 'Пахне краще, ніж виглядає',
                 'price' => 420,
+                'long_description' => 'просто фічка у формі жопки. Свічка має 3 аромати на вибір, або може не мати його взагалі. Час горіння: до 2 годин',
+                'ingridients' => 'Віск, натуральні ароматизатори (при виборі запаху)',
+                'height' => 20,
+                'weight' => 400,
                 'image' => 'bodybuttcard.jpg',
                 'collections' => ['Body'],
                 'types' => ['Свічки'],
@@ -98,6 +110,10 @@ class ProductSeeder extends Seeder
                 'name' => 'Мило Морозиво',
                 'description' => "Ну дуже хочеться з'їсти",
                 'price' => 321,
+                'long_description' => 'Дуже смачненьке на вигляд мило, яким можна привабити свої дітей до миття рук',
+                'ingridients' => 'Вода, гліцерин, масла',
+                'height' => 10,
+                'weight' => 100,
                 'image' => 'bodybuttcard.jpg',
                 'collections' => ['KIDS'],
                 'types' => ['Мило'],
@@ -109,6 +125,10 @@ class ProductSeeder extends Seeder
                 'name' => 'Мило Лавандове',
                 'description' => 'Вбивай мікробів лавандою',
                 'price' => 123,
+                'long_description' => 'Мило з запахом лавандового поля',
+                'ingridients' => 'Вода, гліцерин, масла',
+                'height' => 10,
+                'weight' => 100,
                 'image' => 'bodybuttcard.jpg',
                 'collections' => ['HOUSE'],
                 'types' => ['Мило'],
@@ -120,6 +140,8 @@ class ProductSeeder extends Seeder
                 'name' => 'Набір Валентинка',
                 'description' => 'Спробуй все і одразу',
                 'price' => 1919,
+                'long_description' => 'Всіх видів мила та свічок потрошку',
+                'weight' => 2000,
                 'image' => 'bodybuttcard.jpg',
                 'collections' => ['Valentine\'s'],
                 'types' => ['Набори'],
@@ -183,7 +205,6 @@ class ProductSeeder extends Seeder
                     }
                 }
             }
-
 
             // Создаем и связываем изображение с товаром
             $imageData = [
