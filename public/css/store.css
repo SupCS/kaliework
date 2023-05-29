@@ -935,10 +935,19 @@ details > label {
 }
 
 .popup__product-color {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     background-color: #ccc;
     margin-left: 10px;
     flex-shrink: 0;
+}
+
+.popup__selected-wick,
+.popup__selected-aroma {
+    font-size: 14px;
+}
+
+.popup__selected-aroma {
+    margin-left: 5px;
 }
