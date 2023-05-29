@@ -69,8 +69,8 @@
     border: 2px solid black;
 }
 
-.cp.cp-fair {
-    background-color: #eae2d7;
+.cp.cp-beige {
+    background-color: #f2d1a6;
 }
 
 .cp.cp-pink {
@@ -455,7 +455,6 @@
     justify-content: space-between; /* Распределяем элементы внутри равномерно */
     width: 100%;
     max-width: 800px;
-    min-height: 300px;
     background-color: #fff;
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 4px;

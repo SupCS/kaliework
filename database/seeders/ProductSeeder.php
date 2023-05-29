@@ -50,7 +50,7 @@ class ProductSeeder extends Seeder
             $wicks[$wickName] = Wick::firstOrCreate(['name' => $wickName]);
         }
 
-        $colorNames = ['fair', 'pink', 'purple', 'lightgreen', 'red'];
+        $colorNames = ['beige', 'pink', 'purple', 'lightgreen', 'red'];
         $colors = [];
         foreach ($colorNames as $colorName) {
             $colors[$colorName] = Color::firstOrCreate(['name' => $colorName]);
@@ -68,7 +68,7 @@ class ProductSeeder extends Seeder
                 'aromas' => ['Квіти', 'Цитрусові', 'Кастомні'],
                 'sizes' => ['Великі'],
                 'wicks' => ['Дерев\'яний', 'Бавовняний'],
-                'colors' => ['fair', 'pink', 'purple', 'lightgreen', 'red'],
+                'colors' => ['beige', 'pink', 'purple', 'lightgreen', 'red'],
             ],
             [
                 'name' => 'Свічка Body Man',
@@ -80,7 +80,7 @@ class ProductSeeder extends Seeder
                 'aromas' => ['Квіти', 'Цитрусові', 'Кастомні'],
                 'sizes' => ['Великі'],
                 'wicks' => ['Дерев\'яний', 'Бавовняний'],
-                'colors' => ['fair', 'pink', 'purple', 'lightgreen', 'red'],
+                'colors' => ['beige', 'pink', 'purple', 'lightgreen', 'red'],
             ],
             [
                 'name' => 'Свічка Body Butt',
@@ -92,7 +92,7 @@ class ProductSeeder extends Seeder
                 'aromas' => ['Екзотика'],
                 'sizes' => ['Великі'],
                 'wicks' => ['Бавовняний'],
-                'colors' => ['fair', 'red'],
+                'colors' => ['beige', 'red'],
             ],
             [
                 'name' => 'Мило Морозиво',
@@ -126,7 +126,7 @@ class ProductSeeder extends Seeder
                 'aromas' => ['Цитрусові', 'Квіти', 'Фрукти', 'Екзотика', 'Кастомні'],
                 'sizes' => ['Великі', 'Маленькі'],
                 'wicks' => ['Дерев\'яний', 'Бавовняний'],
-                'colors' => ['fair', 'pink', 'purple', 'lightgreen', 'red'],
+                'colors' => ['beige', 'pink', 'purple', 'lightgreen', 'red'],
             ],
         ];
 

@@ -30,7 +30,7 @@ class Cart {
     }
     addProduct(product) {
         const existingProduct = this.products.find(
-            (p) => p.name === product.name
+            (p) => p.name === product.name && p.color === product.color
         );
         if (existingProduct) {
             existingProduct.quantity++;
@@ -42,7 +42,7 @@ class Cart {
     }
     increaseProductQuantity(product) {
         const existingProduct = this.products.find(
-            (p) => p.name === product.name
+            (p) => p.name === product.name && p.color === product.color
         );
         if (existingProduct) {
             existingProduct.quantity++;
@@ -53,7 +53,7 @@ class Cart {
 
     decreaseProductQuantity(product) {
         const existingProduct = this.products.find(
-            (p) => p.name === product.name
+            (p) => p.name === product.name && p.color === product.color
         );
         if (existingProduct && existingProduct.quantity > 1) {
             existingProduct.quantity--;
@@ -81,10 +81,12 @@ class Product {
     imageSrc;
     name;
     price;
+    color;
     constructor(data) {
         this.imageSrc = data.imageSrc;
         this.name = data.name;
         this.price = data.price;
+        this.color = null;
     }
 }
 
@@ -109,7 +111,7 @@ cartNum.textContent = myCart.count;
 
 updateCartCount();
 
-// Добавление продукта из карточки (store.html)
+// Добавление продукта из карточки (store.blade.php)
 const productCards = Array.from(document.querySelectorAll(".product-card"));
 
 productCards.forEach((productCard) => {
@@ -128,17 +130,25 @@ productCards.forEach((productCard) => {
     });
 });
 
-$(document).ready(function () {
-    $(".cp").on("click", function () {
-        const selectedColor = $(this).attr("data-color"); // Получаем значение атрибута 'data-color'
-        $(this).toggleClass("active"); // Переключаем класс '.active' у выбранного цвета
+$(document).ready(function() {
+    const selectedColor = $(".cp.active").attr("data-color"); // Получаем значение атрибута 'data-color' у выбранного цвета при загрузке страницы
+    $(".product-buy-button").attr("data-color", selectedColor); // Сохраняем выбранный цвет в атрибуте 'data-color' элемента '.product-buy-button'
+    console.log($(".product-buy-button").attr("data-color"));
+  
+    $(".cp").on("click", function() {
+      const selectedColor = $(this).attr("data-color"); // Получаем значение атрибута 'data-color'
+      const isActive = $(this).hasClass("active");
+  
+      if (!isActive) {
+        $(this).addClass("active"); // Переключаем класс '.active' у выбранного цвета
         $(this).siblings().removeClass("active"); // Удаляем класс '.active' у других цветов
-
         // Сохраняем выбранный цвет в атрибуте 'data-color' элемента '.product-buy-button'
         $(".product-buy-button").attr("data-color", selectedColor);
         console.log($(".product-buy-button").attr("data-color"));
+      }
     });
-});
+  });
+  
 
 // Добавление продукта из раздела product-info (product.html)
 const addToCartButton = document.querySelector(".product-buy-button");
@@ -214,7 +224,7 @@ function popupContainerFill() {
         productTitle.innerHTML = product.name;
 
         const productColor = document.createElement("span");
-        productColor.classList.add("popup__product-color");;
+        productColor.classList.add("popup__product-color");
         productColor.style.backgroundColor = product.color;
 
         const productQuantity = document.createElement("div");
