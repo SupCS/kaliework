@@ -17,7 +17,7 @@ class Product extends Model
     public function collections()
     {
         return $this->belongsToMany(Collection::class)->withTimestamps();
-    }    
+    }
 
     public function types()
     {
@@ -38,4 +38,10 @@ class Product extends Model
     {
         return $this->belongsToMany(Wick::class)->withTimestamps();
     }
+
+    public function colors()
+    {
+        return $this->belongsToMany(Color::class)->withTimestamps();
+    }
+
 }

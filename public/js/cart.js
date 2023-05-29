@@ -128,6 +128,18 @@ productCards.forEach((productCard) => {
     });
 });
 
+$(document).ready(function () {
+    $(".cp").on("click", function () {
+        const selectedColor = $(this).attr("data-color"); // Получаем значение атрибута 'data-color'
+        $(this).toggleClass("active"); // Переключаем класс '.active' у выбранного цвета
+        $(this).siblings().removeClass("active"); // Удаляем класс '.active' у других цветов
+
+        // Сохраняем выбранный цвет в атрибуте 'data-color' элемента '.product-buy-button'
+        $(".product-buy-button").attr("data-color", selectedColor);
+        console.log($(".product-buy-button").attr("data-color"));
+    });
+});
+
 // Добавление продукта из раздела product-info (product.html)
 const addToCartButton = document.querySelector(".product-buy-button");
 
@@ -150,6 +162,9 @@ if (addToCartButton !== null) {
             name: productName,
             price: productPrice,
         });
+
+        const selectedColor = addToCartButton.getAttribute("data-color"); // Получаем выбранный цвет из атрибута 'data-color'
+        product.color = selectedColor; // Добавляем выбранный цвет в свойство 'color' товара
 
         myCart.addProduct(product);
         localStorage.setItem("cart", JSON.stringify(myCart));
@@ -198,6 +213,10 @@ function popupContainerFill() {
         productTitle.classList.add("popup__product-title");
         productTitle.innerHTML = product.name;
 
+        const productColor = document.createElement("span");
+        productColor.classList.add("popup__product-color");;
+        productColor.style.backgroundColor = product.color;
+
         const productQuantity = document.createElement("div");
         productQuantity.classList.add("popup__product-quantity");
         productQuantity.innerHTML = `Кількість: ${product.quantity}`;
@@ -241,6 +260,7 @@ function popupContainerFill() {
 
         productWrap1.appendChild(productImage);
         productWrap1.appendChild(productTitle);
+        productWrap1.appendChild(productColor);
         productWrap2.appendChild(productPrice);
         productWrap2.appendChild(productDelete);
         productItem.appendChild(productWrap1);

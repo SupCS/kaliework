@@ -45,9 +45,10 @@
     padding-bottom: 10px;
 }
 
-.color-pannel {
+.color-panel {
     display: flex;
     flex-flow: row wrap;
+    justify-content: flex-start;
 }
 
 .cp:not(:last-child) {
@@ -597,6 +598,16 @@
     background: black;
     color: white;
 }
+
+.popup__product-color {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin-left: 10px;
+    flex-shrink: 0;
+}
+
 
 /* Обрані */
 

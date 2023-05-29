@@ -10,6 +10,7 @@ use App\Models\Size;
 use App\Models\Wick;
 use App\Models\Aroma;
 use App\Models\Collection;
+use App\Models\Color;
 
 class ProductSeeder extends Seeder
 {
@@ -49,6 +50,12 @@ class ProductSeeder extends Seeder
             $wicks[$wickName] = Wick::firstOrCreate(['name' => $wickName]);
         }
 
+        $colorNames = ['fair', 'pink', 'purple', 'lightgreen', 'red'];
+        $colors = [];
+        foreach ($colorNames as $colorName) {
+            $colors[$colorName] = Color::firstOrCreate(['name' => $colorName]);
+        }
+
         // Создаем и добавляем товары в базу данных
         $products = [
             [
@@ -61,6 +68,7 @@ class ProductSeeder extends Seeder
                 'aromas' => ['Квіти', 'Цитрусові', 'Кастомні'],
                 'sizes' => ['Великі'],
                 'wicks' => ['Дерев\'яний', 'Бавовняний'],
+                'colors' => ['fair', 'pink', 'purple', 'lightgreen', 'red'],
             ],
             [
                 'name' => 'Свічка Body Man',
@@ -72,6 +80,7 @@ class ProductSeeder extends Seeder
                 'aromas' => ['Квіти', 'Цитрусові', 'Кастомні'],
                 'sizes' => ['Великі'],
                 'wicks' => ['Дерев\'яний', 'Бавовняний'],
+                'colors' => ['fair', 'pink', 'purple', 'lightgreen', 'red'],
             ],
             [
                 'name' => 'Свічка Body Butt',
@@ -83,6 +92,7 @@ class ProductSeeder extends Seeder
                 'aromas' => ['Екзотика'],
                 'sizes' => ['Великі'],
                 'wicks' => ['Бавовняний'],
+                'colors' => ['fair', 'red'],
             ],
             [
                 'name' => 'Мило Морозиво',
@@ -93,6 +103,7 @@ class ProductSeeder extends Seeder
                 'types' => ['Мило'],
                 'aromas' => ['Фрукти'],
                 'sizes' => ['Маленькі'],
+                'colors' => ['purple', 'lightgreen', 'red'],
             ],
             [
                 'name' => 'Мило Лавандове',
@@ -103,6 +114,7 @@ class ProductSeeder extends Seeder
                 'types' => ['Мило'],
                 'aromas' => ['Квіти'],
                 'sizes' => ['Маленькі'],
+                'colors' => ['purple'],
             ],
             [
                 'name' => 'Набір Валентинка',
@@ -114,13 +126,14 @@ class ProductSeeder extends Seeder
                 'aromas' => ['Цитрусові', 'Квіти', 'Фрукти', 'Екзотика', 'Кастомні'],
                 'sizes' => ['Великі', 'Маленькі'],
                 'wicks' => ['Дерев\'яний', 'Бавовняний'],
+                'colors' => ['fair', 'pink', 'purple', 'lightgreen', 'red'],
             ],
         ];
 
         foreach ($products as $productData) {
             $product = Product::firstOrCreate(
                 ['name' => $productData['name']],
-                array_diff_key($productData, ['types' => '', 'sizes' => '', 'wicks' => '', 'aromas' => '', 'collections' => ''])
+                array_diff_key($productData, ['types' => '', 'sizes' => '', 'wicks' => '', 'aromas' => '', 'collections' => '', 'colors' => '',])
             );
 
             if (isset($productData['collections'])) {
@@ -162,6 +175,15 @@ class ProductSeeder extends Seeder
                     }
                 }
             }
+
+            if (isset($productData['colors'])) {
+                foreach ($productData['colors'] as $colorName) {
+                    if (isset($colors[$colorName])) {
+                        $product->colors()->attach($colors[$colorName]);
+                    }
+                }
+            }
+
 
             // Создаем и связываем изображение с товаром
             $imageData = [

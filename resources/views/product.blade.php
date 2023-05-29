@@ -33,14 +33,12 @@
                 <h1 class="product-info-price">{{ $product->price }}₴</h1>
               </div>
               <div class="product-color">
-                <h3 class="product-info-title">Колір</h3>
-                <ul class="color-pannel">
-                  <li class="cp cp-fair active"></li>
-                  <li class="cp cp-pink"></li>
-                  <li class="cp cp-purple"></li>
-                  <li class="cp cp-lightgreen"></li>
-                  <li class="cp cp-red"></li>
-                </ul>
+                  <h3 class="product-info-title">Колір</h3>
+                  <ul class="color-panel">
+                  @foreach ($product->colors as $color)
+                      <li class="cp cp-{{ $color->name }}{{ $loop->first ? ' active' : '' }}" data-color="{{ $color->name }}"></li>
+                  @endforeach
+                  </ul>
               </div>
               <div class="product-wick">
                 <h3 class="product-info-title">Фітиль</h3>
@@ -156,7 +154,6 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{{ asset('js/favorite.js') }}"></script>
   <script src="{{ asset('js/cart.js') }}"></script>
-  <script src="{{ asset('js/colors.js') }}"></script>
   <script src="{{ asset('js/header.js') }}"></script>
   <script src="{{ asset('js/dropdown.js') }}"></script>
 </html>
