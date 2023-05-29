@@ -30,7 +30,11 @@ class Cart {
     }
     addProduct(product) {
         const existingProduct = this.products.find(
-            (p) => p.name === product.name && p.color === product.color
+            (p) =>
+                p.name === product.name &&
+                p.color === product.color &&
+                p.selectedWick === product.selectedWick &&
+                p.selectedAroma === product.selectedAroma
         );
         if (existingProduct) {
             existingProduct.quantity++;
@@ -45,7 +49,11 @@ class Cart {
     }
     increaseProductQuantity(product) {
         const existingProduct = this.products.find(
-            (p) => p.name === product.name && p.color === product.color
+            (p) =>
+                p.name === product.name &&
+                p.color === product.color &&
+                p.selectedWick === product.selectedWick &&
+                p.selectedAroma === product.selectedAroma
         );
         if (existingProduct) {
             existingProduct.quantity++;
@@ -120,7 +128,7 @@ cartNum.textContent = myCart.count;
 updateCartCount();
 
 // Добавление продукта из карточки (store.blade.php)
-$(document).ready(function() {
+$(document).ready(function () {
     const productCards = Array.from(document.querySelectorAll(".product-card"));
 
     productCards.forEach((productCard) => {
@@ -128,7 +136,7 @@ $(document).ready(function() {
         cartIcon.addEventListener("click", (e) => {
             e.preventDefault();
             const card = e.target.closest(".product-card");
-            const colorsJson = card.getAttribute('data-colors');
+            const colorsJson = card.getAttribute("data-colors");
             const colors = JSON.parse(colorsJson); // Преобразование строки JSON в массив объектов JavaScript
             console.log(colors); // Отладочный вывод для проверки значений colors
             const product = new Product({
@@ -145,26 +153,25 @@ $(document).ready(function() {
     });
 });
 
-
-$(document).ready(function() {
+$(document).ready(function () {
     const selectedColor = $(".cp.active").attr("data-color"); // Получаем значение атрибута 'data-color' у выбранного цвета при загрузке страницы
     $(".product-buy-button").attr("data-color", selectedColor); // Сохраняем выбранный цвет в атрибуте 'data-color' элемента '.product-buy-button'
-  
-    $(".cp").on("click", function() {
-      const selectedColor = $(this).attr("data-color"); // Получаем значение атрибута 'data-color'
-      const isActive = $(this).hasClass("active");
-  
-      if (!isActive) {
-        $(this).addClass("active"); // Переключаем класс '.active' у выбранного цвета
-        $(this).siblings().removeClass("active"); // Удаляем класс '.active' у других цветов
-        // Сохраняем выбранный цвет в атрибуте 'data-color' элемента '.product-buy-button'
-        $(".product-buy-button").attr("data-color", selectedColor);
-        console.log($(".product-buy-button").attr("data-color"));
-      }
-    });
-  });
-  
 
+    $(".cp").on("click", function () {
+        const selectedColor = $(this).attr("data-color"); // Получаем значение атрибута 'data-color'
+        const isActive = $(this).hasClass("active");
+
+        if (!isActive) {
+            $(this).addClass("active"); // Переключаем класс '.active' у выбранного цвета
+            $(this).siblings().removeClass("active"); // Удаляем класс '.active' у других цветов
+            // Сохраняем выбранный цвет в атрибуте 'data-color' элемента '.product-buy-button'
+            $(".product-buy-button").attr("data-color", selectedColor);
+            console.log($(".product-buy-button").attr("data-color"));
+        }
+    });
+});
+
+// Добавление продукта из раздела product-info (product.html)
 // Добавление продукта из раздела product-info (product.html)
 const addToCartButton = document.querySelector(".product-buy-button");
 
@@ -190,6 +197,15 @@ if (addToCartButton !== null) {
 
         const selectedColor = addToCartButton.getAttribute("data-color"); // Получаем выбранный цвет из атрибута 'data-color'
         product.color = selectedColor; // Добавляем выбранный цвет в свойство 'color' товара
+
+        const selectedWick = document.querySelector(
+            ".product-wick .dropbtn-text"
+        ).textContent;
+        const selectedAroma = document.querySelector(
+            ".product-aroma .dropbtn-text"
+        ).textContent;
+        product.selectedWick = selectedWick;
+        product.selectedAroma = selectedAroma;
 
         myCart.addProduct(product);
         localStorage.setItem("cart", JSON.stringify(myCart));
@@ -238,9 +254,23 @@ function popupContainerFill() {
         productTitle.classList.add("popup__product-title");
         productTitle.innerHTML = product.name;
 
+        const productInfo = document.createElement("div");
+        productInfo.classList.add("popup__product-info");
+
+        const productWickAroma = document.createElement("div");
+        productWickAroma.classList.add("popup__product-wickaroma");
+
         const productColor = document.createElement("span");
         productColor.classList.add("popup__product-color");
         productColor.style.backgroundColor = product.color;
+
+        const selectedWickSpan = document.createElement("span");
+        selectedWickSpan.classList.add("popup__selected-wick");
+        selectedWickSpan.textContent = product.selectedWick;
+
+        const selectedAromaSpan = document.createElement("span");
+        selectedAromaSpan.classList.add("popup__selected-aroma");
+        selectedAromaSpan.textContent = product.selectedAroma;
 
         const productQuantity = document.createElement("div");
         productQuantity.classList.add("popup__product-quantity");
@@ -264,7 +294,6 @@ function popupContainerFill() {
 
         productWrap2.appendChild(productQuantityMinus);
         productWrap2.appendChild(productQuantity);
-
         productWrap2.appendChild(productQuantityPlus);
 
         const productPrice = document.createElement("div");
@@ -283,8 +312,13 @@ function popupContainerFill() {
             updateCartCount();
         });
 
+        productWickAroma.appendChild(selectedWickSpan);
+        productWickAroma.appendChild(selectedAromaSpan);
+        productInfo.appendChild(productTitle);
+        productInfo.appendChild(productWickAroma);
+
         productWrap1.appendChild(productImage);
-        productWrap1.appendChild(productTitle);
+        productWrap1.appendChild(productInfo);
         productWrap1.appendChild(productColor);
         productWrap2.appendChild(productPrice);
         productWrap2.appendChild(productDelete);

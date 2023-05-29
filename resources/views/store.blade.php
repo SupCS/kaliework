@@ -159,7 +159,7 @@
                                 <p class="product-card-description">
                                     {{ $product->description }}
                                 </p>
-                                <span class="product-card-price">{{ $product->price }} ₴</span>
+                                <span class="product-card-price">{{ number_format($product->price, 0, '', ' ') }} ₴</span>
                             </div>
                         </a>
                         <div class="heart-icon">

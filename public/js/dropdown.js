@@ -1,22 +1,38 @@
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction1() {
-  document.getElementById("myDropdown1").classList.toggle("show");
-}
-function myFunction2() {
-  document.getElementById("myDropdown2").classList.toggle("show");
+function toggleDropdown(dropdownId) {
+  var dropdown = document.getElementById(dropdownId);
+  dropdown.classList.toggle("show");
 }
 
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function (event) {
-  if (!event.target.matches(".dropbtn")) {
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
     var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
+    for (var i = 0; i < dropdowns.length; i++) {
       var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains("show")) {
-        openDropdown.classList.remove("show");
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
       }
     }
   }
 };
+
+// Обработчик выбора фитиля
+var wickButtons = document.querySelectorAll('#wick-dropdown a');
+wickButtons.forEach(function(button) {
+  button.addEventListener('click', function(e) {
+    e.preventDefault();
+    var selectedWick = button.getAttribute('data-wick');
+    var dropbtnText = document.querySelector('.product-wick .dropbtn-text');
+    dropbtnText.textContent = selectedWick;
+  });
+});
+
+// Обработчик выбора аромата
+var aromaButtons = document.querySelectorAll('#aroma-dropdown a');
+aromaButtons.forEach(function(button) {
+  button.addEventListener('click', function(e) {
+    e.preventDefault();
+    var selectedAroma = button.getAttribute('data-aroma');
+    var dropbtnText = document.querySelector('.product-aroma .dropbtn-text');
+    dropbtnText.textContent = selectedAroma;
+  });
+});

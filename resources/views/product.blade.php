@@ -30,7 +30,7 @@
             <div class="product-info-main">
               <div class="product-info-head">
                 <h1 class="product-info-name">{{ $product->name }}</h1>
-                <h1 class="product-info-price">{{ $product->price }}₴</h1>
+                <h1 class="product-info-price">{{ number_format($product->price, 0, '', ' ') }} ₴</h1>
               </div>
               <div class="product-color">
                   <h3 class="product-info-title">Колір</h3>
@@ -42,28 +42,39 @@
               </div>
               <div class="product-wick">
                 <h3 class="product-info-title">Фітиль</h3>
-                <div class="dropdown">
-                  <button onclick="myFunction1()" class="dropbtn">
-                    <span class="dropbtn-text">Авто</span>
-                  </button>
-                  <div id="myDropdown1" class="dropdown-content">
-                    <a href="#">Бавовняний</a>
-                    <a href="#">Дерев'яний</a>
+                @if ($product->wicks->count() > 0)
+                @php
+                  $defaultWick = $product->wicks->first()->name;
+                @endphp
+                  <div class="dropdown">
+                    <button onclick="toggleDropdown('wick-dropdown')" class="dropbtn">
+                      <span class="dropbtn-text">{{ $defaultWick }}</span>
+                    </button>
+                    <div id="wick-dropdown" class="dropdown-content">
+                      @foreach ($product->wicks as $wick)
+                        <a href="#" data-wick="{{ $wick->name }}">{{ $wick->name }}</a>
+                      @endforeach
+                    </div>
                   </div>
-                </div>
+                @endif
               </div>
-              <div class="product-fragnance">
+              <div class="product-aroma">
                 <h3 class="product-info-title">Аромат</h3>
-                <div class="dropdown">
-                  <button onclick="myFunction2()" class="dropbtn">
-                    <span class="dropbtn-text">Немає</span>
-                  </button>
-                  <div id="myDropdown2" class="dropdown-content">
-                    <a href="#">Немає</a>
-                    <a href="#">Фіалка</a>
-                    <a href="#">Яблуко</a>
+                @if ($product->aromas->count() > 0)
+                @php
+                  $defaultAroma = $product->aromas->first()->name;
+                @endphp
+                  <div class="dropdown">
+                    <button onclick="toggleDropdown('aroma-dropdown')" class="dropbtn">
+                      <span class="dropbtn-text">{{ $defaultAroma }}</span>
+                    </button>
+                    <div id="aroma-dropdown" class="dropdown-content">
+                      @foreach ($product->aromas as $aroma)
+                        <a href="#" data-aroma="{{ $aroma->name }}">{{ $aroma->name }}</a>
+                      @endforeach
+                    </div>
                   </div>
-                </div>
+                @endif
               </div>
               <div class="product-info-description">
                 <span class="info-description-name">{{ $product->name }}</span> -

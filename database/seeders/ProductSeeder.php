@@ -32,7 +32,7 @@ class ProductSeeder extends Seeder
             $types[$typeName] = Type::firstOrCreate(['name' => $typeName]);
         }
 
-        $aromaNames = ['Цитрусові', 'Квіти', 'Фрукти', 'Екзотика', 'Кастомні'];
+        $aromaNames = ['Немає','Цитрусові', 'Квіти', 'Фрукти', 'Екзотика', 'Кастомні'];
         $aromas = [];
         foreach ($aromaNames as $aromaName) {
             $aromas[$aromaName] = Aroma::firstOrCreate(['name' => $aromaName]);
@@ -65,7 +65,7 @@ class ProductSeeder extends Seeder
                 'image' => 'bodycard.jpg',
                 'collections' => ['Body'],
                 'types' => ['Свічки'],
-                'aromas' => ['Квіти', 'Цитрусові', 'Кастомні'],
+                'aromas' => ['Немає', 'Квіти', 'Цитрусові', 'Кастомні'],
                 'sizes' => ['Великі'],
                 'wicks' => ['Дерев\'яний', 'Бавовняний'],
                 'colors' => ['beige', 'pink', 'purple', 'lightgreen', 'red'],
@@ -77,7 +77,7 @@ class ProductSeeder extends Seeder
                 'image' => 'bodymancard.jpg',
                 'collections' => ['Body'],
                 'types' => ['Свічки'],
-                'aromas' => ['Квіти', 'Цитрусові', 'Кастомні'],
+                'aromas' => ['Немає', 'Квіти', 'Цитрусові', 'Кастомні'],
                 'sizes' => ['Великі'],
                 'wicks' => ['Дерев\'яний', 'Бавовняний'],
                 'colors' => ['beige', 'pink', 'purple', 'lightgreen', 'red'],
@@ -89,7 +89,7 @@ class ProductSeeder extends Seeder
                 'image' => 'bodybuttcard.jpg',
                 'collections' => ['Body'],
                 'types' => ['Свічки'],
-                'aromas' => ['Екзотика'],
+                'aromas' => ['Немає', 'Екзотика'],
                 'sizes' => ['Великі'],
                 'wicks' => ['Бавовняний'],
                 'colors' => ['beige', 'red'],
