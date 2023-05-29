@@ -145,7 +145,7 @@
             </div>
             <div class="products-block">
                 @foreach ($products as $product)
-                    <div class="product-card" data-product-id="{{ $product->id }}">
+                    <div class="product-card" data-product-id="{{ $product->id }}" data-colors="{{ $product->colors }}">
                       <a href="{{ route('product', ['id' => $product->id]) }}">
                         <div class="product-card-img">
                             @if (isset($product->image))

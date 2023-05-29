@@ -36,6 +36,9 @@ class Cart {
             existingProduct.quantity++;
         } else {
             product.quantity = 1;
+            if (product.colors === null && product.colors.length > 0) {
+                product.color = product.colors[0];
+            }
             this.products.push(product);
         }
         updateCartCount();
@@ -82,11 +85,16 @@ class Product {
     name;
     price;
     color;
+    colors;
     constructor(data) {
         this.imageSrc = data.imageSrc;
         this.name = data.name;
         this.price = data.price;
         this.color = null;
+        this.colors = data.colors;
+        if (this.colors && this.colors.length > 0) {
+            this.color = this.colors[0].name;
+        }
     }
 }
 
@@ -112,28 +120,35 @@ cartNum.textContent = myCart.count;
 updateCartCount();
 
 // Добавление продукта из карточки (store.blade.php)
-const productCards = Array.from(document.querySelectorAll(".product-card"));
+$(document).ready(function() {
+    const productCards = Array.from(document.querySelectorAll(".product-card"));
 
-productCards.forEach((productCard) => {
-    const cartIcon = productCard.querySelector(".cart-icon");
-    cartIcon.addEventListener("click", (e) => {
-        e.preventDefault();
-        const card = e.target.closest(".product-card");
-        const product = new Product({
-            imageSrc: card.querySelector(".product-card-img img").src,
-            name: card.querySelector(".product-card-title").textContent,
-            price: card.querySelector(".product-card-price").textContent,
+    productCards.forEach((productCard) => {
+        const cartIcon = productCard.querySelector(".cart-icon");
+        cartIcon.addEventListener("click", (e) => {
+            e.preventDefault();
+            const card = e.target.closest(".product-card");
+            const colorsJson = card.getAttribute('data-colors');
+            const colors = JSON.parse(colorsJson); // Преобразование строки JSON в массив объектов JavaScript
+            console.log(colors); // Отладочный вывод для проверки значений colors
+            const product = new Product({
+                imageSrc: card.querySelector(".product-card-img img").src,
+                name: card.querySelector(".product-card-title").textContent,
+                price: card.querySelector(".product-card-price").textContent,
+                colors: colors, // Получаем значение 'name' первого объекта из массива colors
+            });
+            console.log(product.color); // Отладочный вывод для проверки значения свойства color
+            myCart.addProduct(product);
+            localStorage.setItem("cart", JSON.stringify(myCart));
+            updateCartCount();
         });
-        myCart.addProduct(product);
-        localStorage.setItem("cart", JSON.stringify(myCart));
-        updateCartCount();
     });
 });
+
 
 $(document).ready(function() {
     const selectedColor = $(".cp.active").attr("data-color"); // Получаем значение атрибута 'data-color' у выбранного цвета при загрузке страницы
     $(".product-buy-button").attr("data-color", selectedColor); // Сохраняем выбранный цвет в атрибуте 'data-color' элемента '.product-buy-button'
-    console.log($(".product-buy-button").attr("data-color"));
   
     $(".cp").on("click", function() {
       const selectedColor = $(this).attr("data-color"); // Получаем значение атрибута 'data-color'

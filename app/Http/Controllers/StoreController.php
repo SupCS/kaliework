@@ -25,7 +25,7 @@ class StoreController extends Controller
             $selectedTypes = ['all'];
         }
 
-        $products = Product::with('image', 'types')
+        $products = Product::with('image', 'types', 'colors')
             ->when($selectedTypes, function ($query, $selectedTypes) {
                 if ($selectedTypes[0] === 'all') {
                     // Если выбран фильтр "Всі" для типа товара, не применяем фильтрацию по типу товара
