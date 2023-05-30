@@ -28,54 +28,54 @@
           </div>
           <div class="store-flex">
             <div class="filters-side-bar">
-            <div class="price-filter">
-                <div class="price-filter-title">
-                  <p>Ціна</p>
-                </div>
-                <div class="price-slider">
-                  <div class="progress"></div>
-                </div>
-                <div class="range-input">
-                  <input
-                    type="range"
-                    class="range-min"
-                    min="0"
-                    max="5000"
-                    value="0"
-                    step="50"
-                  />
-                  <input
-                    type="range"
-                    class="range-max"
-                    min="0"
-                    max="5000"
-                    value="5000"
-                    step="50"
-                  />
-                </div>
-                <div class="price-input">
-                  <div class="field">
-                    <input type="number" class="input-min" value="0" />
-                  </div>
-                  <div class="separator"></div>
-                  <div class="field">
-                    <input type="number" class="input-max" value="5000" />
-                  </div>
-                </div>
-              </div>
               <form action="{{ route('store') }}" method="get" id="filter-form">
+                <div class="price-filter">
+                  <div class="price-filter-title">
+                    <p>Ціна</p>
+                  </div>
+                  <div class="price-slider">
+                    <div class="progress"></div>
+                  </div>
+                  <div class="range-input">
+                    <input
+                      type="range"
+                      class="range-min"
+                      min="0"
+                      max="5000"
+                      value="0"
+                      step="50"
+                    />
+                    <input
+                      type="range"
+                      class="range-max"
+                      min="0"
+                      max="5000"
+                      value="5000"
+                      step="50"
+                    />
+                  </div>
+                  <div class="price-input">
+                    <div class="field">
+                      <input type="number" class="input-min" value="0" />
+                    </div>
+                    <div class="separator"></div>
+                    <div class="field">
+                      <input type="number" class="input-max" value="5000" />
+                    </div>
+                  </div>
+                </div>
                 <div class="filters">
-                  <details class="filter-item">
+                      <details class="filter-item">
                         <summary class="filter-h3">Колекція</summary>
                         <label class="checkbox-container">
                             Всі
-                            <input type="checkbox" name="collections[]" value="all" {{ in_array('all', $selectedCollections) ? 'checked' : '' }} onchange="document.getElementById('filter-form').submit()">
+                            <input type="checkbox" name="collections[]" value="all" {{ in_array('all', $selectedCollections) ? 'checked' : '' }} >
                             <span class="checkmark"></span>
                         </label>
                         @foreach ($collections as $collection)
                             <label class="checkbox-container">
                                 {{ $collection->name }}
-                                <input type="checkbox" name="collections[]" value="{{ $collection->id }}" {{ in_array($collection->id, $selectedCollections) ? 'checked' : '' }} onchange="document.getElementById('filter-form').submit()">
+                                <input type="checkbox" name="collections[]" value="{{ $collection->id }}" {{ in_array($collection->id, $selectedCollections) ? 'checked' : '' }} >
                                 <span class="checkmark"></span>
                             </label>
                         @endforeach
@@ -84,13 +84,13 @@
                         <summary class="filter-h3">Тип товару</summary>
                         <label class="checkbox-container">
                             Всі
-                            <input type="checkbox" name="types[]" value="all" {{ in_array('all', $selectedTypes) ? 'checked' : '' }} onchange="document.getElementById('filter-form').submit()">
+                            <input type="checkbox" name="types[]" value="all" {{ in_array('all', $selectedTypes) ? 'checked' : '' }} >
                             <span class="checkmark"></span>
                         </label>
                         @foreach ($types as $type)
                             <label class="checkbox-container">
                                 {{ $type->name }}
-                                <input type="checkbox" name="types[]" value="{{ $type->id }}" {{ in_array($type->id, $selectedTypes) ? 'checked' : '' }} onchange="document.getElementById('filter-form').submit()">
+                                <input type="checkbox" name="types[]" value="{{ $type->id }}" {{ in_array($type->id, $selectedTypes) ? 'checked' : '' }} >
                                 <span class="checkmark"></span>
                             </label>
                         @endforeach
@@ -99,13 +99,13 @@
                       <summary class="filter-h3">Аромат</summary>
                       <label class="checkbox-container">
                           Всі
-                          <input type="checkbox" name="aromas[]" value="all" {{ in_array('all', $selectedAromas) ? 'checked' : '' }} onchange="document.getElementById('filter-form').submit()">
+                          <input type="checkbox" name="aromas[]" value="all" {{ in_array('all', $selectedAromas) ? 'checked' : '' }} >
                           <span class="checkmark"></span>
                       </label>
                       @foreach ($aromas as $aroma)
                           <label class="checkbox-container">
                               {{ $aroma->name }}
-                              <input type="checkbox" name="aromas[]" value="{{ $aroma->id }}" {{ in_array($aroma->id, $selectedAromas) ? 'checked' : '' }} onchange="document.getElementById('filter-form').submit()">
+                              <input type="checkbox" name="aromas[]" value="{{ $aroma->id }}" {{ in_array($aroma->id, $selectedAromas) ? 'checked' : '' }} >
                               <span class="checkmark"></span>
                           </label>
                       @endforeach
@@ -114,13 +114,13 @@
                       <summary class="filter-h3">Розмір</summary>
                       <label class="checkbox-container">
                           Всі
-                          <input type="checkbox" name="sizes[]" value="all" {{ in_array('all', $selectedSizes) ? 'checked' : '' }} onchange="document.getElementById('filter-form').submit()">
+                          <input type="checkbox" name="sizes[]" value="all" {{ in_array('all', $selectedSizes) ? 'checked' : '' }} >
                           <span class="checkmark"></span>
                       </label>
                       @foreach ($sizes as $size)
                           <label class="checkbox-container">
                               {{ $size->name }}
-                              <input type="checkbox" name="sizes[]" value="{{ $size->id }}" {{ in_array($size->id, $selectedSizes) ? 'checked' : '' }} onchange="document.getElementById('filter-form').submit()">
+                              <input type="checkbox" name="sizes[]" value="{{ $size->id }}" {{ in_array($size->id, $selectedSizes) ? 'checked' : '' }} >
                               <span class="checkmark"></span>
                           </label>
                       @endforeach
@@ -129,18 +129,21 @@
                       <summary class="filter-h3">Фітиль</summary>
                       <label class="checkbox-container">
                           Всі
-                          <input type="checkbox" name="wicks[]" value="all" {{ in_array('all', $selectedWicks) ? 'checked' : '' }} onchange="document.getElementById('filter-form').submit()">
+                          <input type="checkbox" name="wicks[]" value="all" {{ in_array('all', $selectedWicks) ? 'checked' : '' }} >
                           <span class="checkmark"></span>
                       </label>
                       @foreach ($wicks as $wick)
                           <label class="checkbox-container">
                               {{ $wick->name }}
-                              <input type="checkbox" name="wicks[]" value="{{ $wick->id }}" {{ in_array($wick->id, $selectedWicks) ? 'checked' : '' }} onchange="document.getElementById('filter-form').submit()">
+                              <input type="checkbox" name="wicks[]" value="{{ $wick->id }}" {{ in_array($wick->id, $selectedWicks) ? 'checked' : '' }} >
                               <span class="checkmark"></span>
                           </label>
                       @endforeach
                   </details>
                 </div>
+                <input type="hidden" id="price-min" name="price_min" value="0">
+                <input type="hidden" id="price-max" name="price_max" value="5000">
+                <button class="filters-apply-button" type="submit">Застосувати</button>
             </form>
             </div>
             <div class="products-block">

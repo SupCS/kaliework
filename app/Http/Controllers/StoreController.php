@@ -19,6 +19,8 @@ class StoreController extends Controller
         $selectedAromas = $request->input('aromas', []);
         $selectedSizes = $request->input('sizes', []);
         $selectedWicks = $request->input('wicks', []);
+        $priceMin = $request->input('price_min', 0);
+        $priceMax = $request->input('price_max', 5000);
 
         // Если выбран фильтр "Всі" для типа товара, игнорируем все остальные выбранные типы товаров
         if (in_array('all', $selectedTypes)) {
@@ -26,6 +28,7 @@ class StoreController extends Controller
         }
 
         $products = Product::with('image', 'types', 'colors')
+            ->whereBetween('price', [$priceMin, $priceMax])
             ->when($selectedTypes, function ($query, $selectedTypes) {
                 if ($selectedTypes[0] === 'all') {
                     // Если выбран фильтр "Всі" для типа товара, не применяем фильтрацию по типу товара
