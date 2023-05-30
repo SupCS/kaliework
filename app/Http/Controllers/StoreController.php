@@ -14,6 +14,7 @@ class StoreController extends Controller
 {
     public function index(Request $request)
     {
+        // Получение параметров фильтрации из запроса
         $query = $request->input('query', null);
         $selectedTypes = $request->input('types', []);
         $selectedCollections = $request->input('collections', []);
@@ -28,6 +29,7 @@ class StoreController extends Controller
             $selectedTypes = ['all'];
         }
 
+        // Запрос на получение товаров с учетом фильтров
         $products = Product::with('image', 'types', 'colors')
             ->whereBetween('price', [$priceMin, $priceMax])
             ->when($query, function ($queryBuilder, $query) {
@@ -82,17 +84,34 @@ class StoreController extends Controller
             })
             ->get();
 
+        // Получение всех доступных типов, коллекций, ароматов, размеров и фитилей
         $types = Type::all();
         $collections = Collection::all();
         $aromas = Aroma::all();
         $sizes = Size::all();
         $wicks = Wick::all();
 
-        return view('store', compact('query', 'products', 'types', 'selectedTypes', 'collections', 'selectedCollections', 'aromas', 'selectedAromas', 'sizes', 'selectedSizes', 'wicks', 'selectedWicks'));
+        // Передача данных в представление "store.blade.php"
+        return view('store', compact(
+            'query',
+            'products',
+            'types',
+            'selectedTypes',
+            'collections',
+            'selectedCollections',
+            'aromas',
+            'selectedAromas',
+            'sizes',
+            'selectedSizes',
+            'wicks',
+            'selectedWicks'
+        ));
     }
 
+    // Отображает страницу с информацией о товаре.
     public function showProduct($id)
     {
+        // Поиск товара по идентификатору
         $product = Product::with('image')->find($id);
 
         // Проверка, найден ли товар
@@ -100,13 +119,15 @@ class StoreController extends Controller
             return redirect('/store');
         }
 
-        // Получить 4 случайных продукта
+        // Получение 4 случайных товаров для отображения в разделе "Інші товари"
         $otherProducts = Product::with('image')->inRandomOrder()->take(4)->get();
 
-        $imageName = pathinfo($product->image, PATHINFO_FILENAME); // Получить имя файла изображения без расширения
-        $bigImageName = $imageName . 'big.jpg'; // Добавить префикс "big" к имени файла
-        $product->bigImage = $bigImageName; // Добавить свойство "bigImage" с именем увеличенного изображения
+        // Формирование имени большого изображения товара для страницы продукта
+        $imageName = pathinfo($product->image, PATHINFO_FILENAME);
+        $bigImageName = $imageName . 'big.jpg';
+        $product->bigImage = $bigImageName;
 
+        // Передача данных в представление "product.blade.php"
         return view('product', ['product' => $product, 'otherProducts' => $otherProducts]);
     }
 }

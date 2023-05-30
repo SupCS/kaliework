@@ -12,7 +12,7 @@
         </div>
     <div class="popup__item">
         <div class="popup__cost">
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><button class="popup__checkout-button" id="popup_checkout_button">
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><button class="popup__checkout-button" id="popup_checkout_button">
             Перейти до оплати
             </button></a>
             <div class="popup__total">

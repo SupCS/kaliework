@@ -1,9 +1,12 @@
 // Утилиты
+
+// Функция преобразования строки в число, удаляя все символы, кроме цифр, точки и минуса
 function toNum(str) {
     const num = Number(str.replace(/[^0-9.-]+/g, ""));
     return num;
 }
 
+// Функция преобразования числа в строку валюты в формате "uk-UA"
 function toCurrency(num) {
     const format = new Intl.NumberFormat("uk-UA", {
         style: "currency",
@@ -14,20 +17,27 @@ function toCurrency(num) {
 }
 
 // Корзина
+
+// Переменные для отображения количества товаров в корзине
 const cartNum = document.querySelector("#cart_num");
 const cart = document.querySelector("#cart");
 
+// Класс Cart для управления корзиной
 class Cart {
     products;
     constructor() {
         this.products = [];
     }
+    
+    // Геттер для получения общего количества товаров в корзине
     get count() {
         return this.products.reduce(
             (total, product) => total + product.quantity,
             0
         );
     }
+    
+    // Метод добавления товара в корзину
     addProduct(product) {
         const existingProduct = this.products.find(
             (p) =>
@@ -36,6 +46,7 @@ class Cart {
                 p.selectedWick === product.selectedWick &&
                 p.selectedAroma === product.selectedAroma
         );
+        
         if (existingProduct) {
             existingProduct.quantity++;
         } else {
@@ -45,8 +56,11 @@ class Cart {
             }
             this.products.push(product);
         }
+        
         updateCartCount();
     }
+    
+    // Метод увеличения количества товара в корзине
     increaseProductQuantity(product) {
         const existingProduct = this.products.find(
             (p) =>
@@ -55,6 +69,7 @@ class Cart {
                 p.selectedWick === product.selectedWick &&
                 p.selectedAroma === product.selectedAroma
         );
+        
         if (existingProduct) {
             existingProduct.quantity++;
             localStorage.setItem("cart", JSON.stringify(myCart));
@@ -62,24 +77,30 @@ class Cart {
         }
     }
 
+    // Метод уменьшения количества товара в корзине
     decreaseProductQuantity(product) {
         const existingProduct = this.products.find(
             (p) => p.name === product.name && p.color === product.color
         );
+        
         if (existingProduct && existingProduct.quantity > 1) {
             existingProduct.quantity--;
         } else if (existingProduct && existingProduct.quantity === 1) {
             this.removeProduct(this.products.indexOf(product));
         }
+        
         localStorage.setItem("cart", JSON.stringify(myCart));
         updateCartCount();
     }
 
+    // Метод удаления товара из корзины
     removeProduct(index) {
         this.products.splice(index, 1);
         updateCartCount();
         showEmptyCartMessage();
     }
+    
+    // Геттер для получения общей стоимости товаров в корзине
     get cost() {
         const sum = this.products.reduce((total, product) => {
             return total + toNum(product.price) * product.quantity;
@@ -88,6 +109,7 @@ class Cart {
     }
 }
 
+// Класс Product для представления товара
 class Product {
     imageSrc;
     name;
@@ -118,6 +140,7 @@ class Product {
     }
 }
 
+// Функция обновления отображения количества товаров в корзине
 function updateCartCount() {
     cartNum.textContent = myCart.count;
     if (myCart.count === 0) {
@@ -127,6 +150,7 @@ function updateCartCount() {
     }
 }
 
+// Создание экземпляра корзины и сохранение в localStorage
 const myCart = new Cart();
 
 if (localStorage.getItem("cart") === null) {
@@ -142,7 +166,7 @@ updateCartCount();
 // Добавление продукта из карточки (store.blade.php)
 $(document).ready(function () {
     const productCards = Array.from(document.querySelectorAll(".product-card"));
-
+    
     productCards.forEach((productCard) => {
         const cartIcon = productCard.querySelector(".cart-icon");
         cartIcon.addEventListener("click", (e) => {
@@ -154,7 +178,7 @@ $(document).ready(function () {
             const wicks = JSON.parse(wicksJson);
             const aromasJson = card.getAttribute("data-aromas");
             const aromas = JSON.parse(aromasJson);
-
+            
             const product = new Product({
                 imageSrc: card.querySelector(".product-card-img img").src,
                 name: card.querySelector(".product-card-title").textContent,
@@ -163,7 +187,7 @@ $(document).ready(function () {
                 wicks: wicks,
                 aromas: aromas,
             });
-
+            
             myCart.addProduct(product);
             localStorage.setItem("cart", JSON.stringify(myCart));
             updateCartCount();
@@ -171,6 +195,7 @@ $(document).ready(function () {
     });
 });
 
+// Обработчик выбора цвета товара
 $(document).ready(function () {
     const selectedColor = $(".cp.active").attr("data-color");
     $(".product-buy-button").attr("data-color", selectedColor);
@@ -229,6 +254,7 @@ if (addToCartButton !== null) {
 }
 
 // Попап
+
 const popup = document.querySelector(".popup");
 const popupClose = document.querySelector("#popup_close");
 const body = document.body;
@@ -236,6 +262,7 @@ const popupContainer = document.querySelector("#popup_container");
 const popupProductList = document.querySelector("#popup_product_list");
 const popupCost = document.querySelector("#popup_cost");
 
+// Обработчик открытия попапа
 cart.addEventListener("click", (e) => {
     e.preventDefault();
     popup.classList.add("popup--open");
@@ -243,12 +270,14 @@ cart.addEventListener("click", (e) => {
     popupContainerFill();
 });
 
+// Функция отображения сообщения о пустой корзине
 function showEmptyCartMessage() {
     if (myCart.products.length === 0) {
         popupProductList.innerHTML = "<p>Наразі тут нічого немає</p>";
     }
 }
 
+// Функция заполнения контейнера попапа товарами из корзины
 function popupContainerFill() {
     popupProductList.innerHTML = null;
     const productsHTML = myCart.products.map((product) => {
@@ -352,6 +381,7 @@ function popupContainerFill() {
     popupCost.textContent = toCurrency(totalCost);
 }
 
+// Обработчик закрытия попапа
 popupClose.addEventListener("click", (e) => {
     e.preventDefault();
     popup.classList.remove("popup--open");
