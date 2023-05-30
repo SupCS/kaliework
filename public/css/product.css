@@ -18,7 +18,8 @@
 }
 
 .product-info .product-info-photo img {
-    max-width: 478px;
+    width: 478px;
+    max-height: 600px;
     display: inline-block;
 }
 

@@ -237,7 +237,7 @@ class ProductSeeder extends Seeder
                 'price' => 1919,
                 'long_description' => 'всіх видів мила та свічок потрошку. Якщо ви обираєте колір - він буде надаватися всім свічкам, де є можливість створити їх вашим кольором',
                 'weight' => 2000,
-                'image' => 'bodybuttcard.jpg',
+                'image' => 'kitvalentines.jpg',
                 'collections' => ['Valentine\'s'],
                 'types' => ['Набори'],
                 'aromas' => ['Цитрусові', 'Квіти', 'Фрукти', 'Екзотика', 'Кастомні'],
