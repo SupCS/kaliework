@@ -770,6 +770,44 @@
         text-align: center;
         margin-bottom: 20px;
     }
+
+    .store-flex {
+        flex-direction: column;
+    }
+    
+    .popup__container {
+        flex-direction: column;
+    }
+    
+    .popup__product {
+        flex-direction: column;
+    }
+    
+    .popup__product-price {
+        font-size: 24px;
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+    
+    .popup__product-quantity-minus,
+    .popup__product-quantity-plus {
+        font-size: 24px;
+    }
+    
+    /* Стили для кнопки удаления товара */
+    .popup__product-delete {
+        font-size: 24px;
+    }
+
+    /* Стили для кнопки закрытия окна */
+    .popup__close {
+        font-size: 24px;
+    }
+    
+    .popup_favorite__product-price {
+        font-size: 24px;
+    }
+
 }
 
 @media (max-width: 420px) {
