@@ -91,19 +91,19 @@
                     </div>
                     <div class="collection-tiles">
                         <div class="collection-tiles-item">
-                            <img src="{{ asset('img/candleart.jpg') }}" alt="collection" />
+                            <img src="{{ asset('img/housecollectionpic.jpg') }}" alt="collection" />
                             <h3>house</h3>
                         </div>
                         <div class="collection-tiles-item">
-                            <img src="{{ asset('img/candleart.jpg') }}" alt="collection" />
+                            <img src="{{ asset('img/bodycollectionpic.jpg') }}" alt="collection" />
                             <h3>body</h3>
                         </div>
                         <div class="collection-tiles-item">
-                            <img src="{{ asset('img/candleart.jpg') }}" alt="collection" />
+                            <img src="{{ asset('img/valentinescollectionpic.jpg') }}" alt="collection" />
                             <h3>valentine's</h3>
                         </div>
                         <div class="collection-tiles-item">
-                            <img src="{{ asset('img/candleart.jpg') }}" alt="collection" />
+                            <img src="{{ asset('img/friendshipcollectionpic.jpg') }}" alt="collection" />
                             <h3>friendship</h3>
                         </div>
                     </div>
@@ -136,19 +136,19 @@
                     </div>
                     <div class="soap-tiles">
                         <div class="soap-tiles-item">
-                            <img src="{{ asset('img/soaptiles.jpg') }}" alt="soap collection" />
+                            <img src="{{ asset('img/soaparomaspic.jpg') }}" alt="soap collection" />
                             <h3>аромати</h3>
                         </div>
                         <div class="soap-tiles-item">
-                            <img src="{{ asset('img/soaptiles.jpg') }}" alt="soap collection" />
+                            <img src="{{ asset('img/soapkidspic.jpg') }}" alt="soap collection" />
                             <h3>для дітей</h3>
                         </div>
                         <div class="soap-tiles-item">
-                            <img src="{{ asset('img/soaptiles.jpg') }}" alt="soap collection" />
+                            <img src="{{ asset('img/soapcollectionspic.jpg') }}" alt="soap collection" />
                             <h3>колекції</h3>
                         </div>
                         <div class="soap-tiles-item">
-                            <img src="{{ asset('img/soaptiles.jpg') }}" alt="soap collection" />
+                            <img src="{{ asset('img/soapformspic.jpg') }}" alt="soap collection" />
                             <h3>форми</h3>
                         </div>
                     </div>

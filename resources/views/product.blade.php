@@ -114,7 +114,7 @@
             <h2 class="similar-products-title">Інші товари</h2>
             <div class="product-cards-row">
               @foreach ($otherProducts as $otherProduct)
-                <div class="product-card" data-product-id="{{ $otherProduct->id }}">
+              <div class="product-card" data-product-id="{{ $otherProduct->id }}" data-colors="{{ json_encode($otherProduct->colors) }}" data-wicks="{{ json_encode($otherProduct->wicks) }}" data-aromas="{{ json_encode($otherProduct->aromas) }}">
                   <a href="{{ route('product', ['id' => $otherProduct->id]) }}">
                     <div class="product-card-img">
                       @if (isset($otherProduct->image))
@@ -145,9 +145,9 @@
                         </g>
                         </svg>
                   </div>
-                  <div class="cart-icon">
-                    <img class="cart-icon-svg" src="{{ asset('img/catricon.svg') }}" />
-                  </div>
+                    <div class="cart-icon">
+                      <img class="cart-icon-svg" src="{{ asset('img/catricon.svg') }}" />
+                    </div>
                 </div>
               @endforeach
             </div>
