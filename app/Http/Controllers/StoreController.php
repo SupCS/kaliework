@@ -14,6 +14,7 @@ class StoreController extends Controller
 {
     public function index(Request $request)
     {
+        $query = $request->input('query', null);
         $selectedTypes = $request->input('types', []);
         $selectedCollections = $request->input('collections', []);
         $selectedAromas = $request->input('aromas', []);
@@ -29,6 +30,9 @@ class StoreController extends Controller
 
         $products = Product::with('image', 'types', 'colors')
             ->whereBetween('price', [$priceMin, $priceMax])
+            ->when($query, function ($queryBuilder, $query) {
+                return $queryBuilder->where('name', 'like', '%' . $query . '%');
+            })
             ->when($selectedTypes, function ($query, $selectedTypes) {
                 if ($selectedTypes[0] === 'all') {
                     // Если выбран фильтр "Всі" для типа товара, не применяем фильтрацию по типу товара
@@ -84,7 +88,7 @@ class StoreController extends Controller
         $sizes = Size::all();
         $wicks = Wick::all();
 
-        return view('store', compact('products', 'types', 'selectedTypes', 'collections', 'selectedCollections', 'aromas', 'selectedAromas', 'sizes', 'selectedSizes', 'wicks', 'selectedWicks'));
+        return view('store', compact('query', 'products', 'types', 'selectedTypes', 'collections', 'selectedCollections', 'aromas', 'selectedAromas', 'sizes', 'selectedSizes', 'wicks', 'selectedWicks'));
     }
 
     public function showProduct($id)

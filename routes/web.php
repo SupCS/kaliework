@@ -40,4 +40,3 @@ Route::post('/contacts', function (\Illuminate\Http\Request $request) {
 use App\Http\Controllers\StoreController;
 Route::get('/store', [StoreController::class, 'index'])->name('store');
 Route::get('/product/{id}', [StoreController::class, 'showProduct'])->name('product');
-

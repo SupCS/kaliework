@@ -5,7 +5,7 @@ function toNum(str) {
 }
 
 function toCurrency(num) {
-    const format = new Intl.NumberFormat("ru-RU", {
+    const format = new Intl.NumberFormat("uk-UA", {
         style: "currency",
         currency: "UAH",
         minimumFractionDigits: 0,

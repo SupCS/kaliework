@@ -18,8 +18,10 @@
         <div class="container">
           <div class="forsmallcontainer">
             <div class="searchbar">
-              <input type="text" placeholder="Пошук" />
-              <button type="submit"><img src="./img/lupaicon.svg" /></button>
+              <form action="{{ route('store') }}" method="get">
+                  <input type="text" name="query" placeholder="Пошук" value="{{ old('query', $query) }}" />
+                  <button type="submit"><img src="./img/lupaicon.svg" /></button>
+              </form>
             </div>
             <div class="small-filters">
               <img src="./img/filters.svg" />
