@@ -34,7 +34,7 @@ Route::post('/contacts', function (\Illuminate\Http\Request $request) {
 
     \Illuminate\Support\Facades\Mail::to('di.syp4ik@gmail.com')->send(new \App\Mail\ContactFormMail($data));
 
-    return redirect('/contacts')->with('success', 'Форма успешно отправлена!');
+    return redirect('/contacts')->with('success', 'Форма успішно надіслана!');
 });
 
 use App\Http\Controllers\StoreController;
