@@ -66,22 +66,20 @@
 
 .filters-side-bar {
     padding-right: 42px;
+    margin-bottom: 80px;
 }
 
 .products-block {
     display: flex;
     flex-flow: row wrap;
     gap: 18px;
+    margin-bottom: 80px;
+    margin-top: 38px;
 }
 
 .product-card {
     display: flex;
     flex-direction: column;
-}
-
-.products-block {
-    margin-bottom: 80px;
-    margin-top: 38px;
 }
 
 .product-card-img img {
