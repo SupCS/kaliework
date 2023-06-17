@@ -1,4 +1,4 @@
-Transfered my website on plain html, css, js to Laravel. (original website: https://github.com/SupCS/kaliestore )
+Transfered my website on plain html, css, js to Laravel. (original website: https://github.com/SupCS/kaliestore ), added some backend functionality such as working with database, filters, choosing of product properties (size, color, etc.), form sending to email functionality. 
 
 
 
